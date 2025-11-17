@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
