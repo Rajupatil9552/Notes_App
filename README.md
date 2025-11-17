@@ -1,5 +1,4 @@
-# Create README.md file
-echo "# Notes App - Full Stack
+
 
 A Google Keep style notes application built with React frontend and Express.js backend with MongoDB.
 
