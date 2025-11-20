@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: `${API_BASE_URL}/note`, // Your backend port
+  baseURL: process.env.BACKEND_URL, // Your backend port
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
