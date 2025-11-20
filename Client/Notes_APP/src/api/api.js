@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: 'http://localhost:3000/note', // Your backend port
+  baseURL: 'mongodb+srv://patilraj1718_db_user:<db_password>@cluster0.mh2ck4m.mongodb.net/?appName=Cluster0', // Your backend port
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
