@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Use Vite environment variables - they must be prefixed with VITE_
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = 'https://notes-app-f9s2.onrender.com' || 'http://localhost:3000';
 
 
 // Create axios instance with base URL
