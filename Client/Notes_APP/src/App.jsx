@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import AddNote from './components/AddNote'
 import AllNotes from './components/AllNotes'
-import { notesAPI } from './api/api'
+import { notesAPI } from './api/api.js'
 
 function App() {
   const [notes, setNotes] = useState([])
