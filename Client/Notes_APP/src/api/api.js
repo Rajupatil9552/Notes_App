@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: process.env.BACKEND_URL, // Your backend port
+  baseURL: 'https://notes-app-f9s2.onrender.com/', // Your backend port
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
