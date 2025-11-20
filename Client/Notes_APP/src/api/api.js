@@ -1,9 +1,11 @@
-
 import axios from 'axios';
+
+// Use Vite environment variables - they must be prefixed with VITE_
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: process.env.BACKEND_URL, // Your backend port
+  baseURL: `${API_BASE_URL}/note`, // Your backend port
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ API.interceptors.response.use(
     } else if (error.response?.status === 500) {
       error.message = 'Server error. Please try again later.';
     } else if (error.code === 'ECONNREFUSED') {
-      error.message = 'Cannot connect to server. Please make sure backend is running on port 3000.';
+      error.message = 'Cannot connect to server. Please make sure backend is running.';
     }
     
     return Promise.reject(error);
