@@ -3,9 +3,10 @@ import axios from 'axios';
 // Use Vite environment variables - they must be prefixed with VITE_
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
+
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: process.env.BACKEND_URL, // Your backend port
+  baseURL: API_BASE_URL, // Your backend port
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -88,4 +89,4 @@ export const notesAPI = {
   },
 };
 
-export default API;
+export { notesAPI };
