@@ -51,7 +51,7 @@ API.interceptors.response.use(
 );
 
 // API methods matching your backend routes
-export const notesAPI = {
+ const notesAPI = {
   // Get all notes (non-deleted)
   getAllNotes: async () => {
     const response = await API.get('/get-all-note');
@@ -90,3 +90,4 @@ export const notesAPI = {
 };
 
 export { notesAPI };
+export default API;
