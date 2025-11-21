@@ -2,17 +2,24 @@ const corsMiddleware = (req, res, next) => {
   const allowedOrigins = [
     'http://localhost:5173', 
     'http://localhost:5174',
-    'https://notes-app-f9s2.vercel.app', // Your Vercel domain
-    'https://notes-app-git-main-rajupatil9552.vercel.app' // Your actual Vercel URL
+    'https://notes-app-f9s2.vercel.app',
+    'https://notes-app-fyar.vercel.app', // Your actual Vercel domain
+    'https://notes-app-*.vercel.app'     // Allow all Vercel preview domains
   ];
   
   const origin = req.headers.origin;
   
-  if (allowedOrigins.includes(origin)) {
+  // Allow any Vercel preview domain
+  if (origin && origin.endsWith('.vercel.app')) {
     res.header('Access-Control-Allow-Origin', origin);
-  } else {
-    // For production, you might want to allow your main Vercel domain
-    res.header('Access-Control-Allow-Origin', 'https://notes-app-f9s2.vercel.app');
+  } 
+  // Allow specific domains
+  else if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  // For production, allow the main domain
+  else {
+    res.header('Access-Control-Allow-Origin', 'https://notes-app-fyar.vercel.app');
   }
   
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
