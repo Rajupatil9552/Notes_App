@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-// Use Vite environment variables - they must be prefixed with VITE_
 const API_BASE_URL = 'https://notes-app-f9s2.onrender.com' || 'http://localhost:3000';
 
+console.log('🔧 API Base URL:', API_BASE_URL); // Debug
 
-// Create axios instance with base URL
 const API = axios.create({
-  baseURL: API_BASE_URL, // Your backend port
+  baseURL: `${API_BASE_URL}/note`, // This adds /note to all requests
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -16,7 +15,7 @@ const API = axios.create({
 // Request interceptor
 API.interceptors.request.use(
   (config) => {
-    console.log('Making API request:', config.method?.toUpperCase(), config.url);
+    console.log('🌐 Making API request to:', config.baseURL + config.url);
     return config;
   },
   (error) => {
@@ -24,47 +23,26 @@ API.interceptors.request.use(
   }
 );
 
-// Response interceptor for error handling
+// Response interceptor
 API.interceptors.response.use(
-  (response) => {
-    console.log('API response received:', response.status);
-    return response;
-  },
+  (response) => response,
   (error) => {
-    console.error('API Error:', {
-      status: error.response?.status,
-      message: error.response?.data || error.message,
-      url: error.config?.url
-    });
-    
-    // Handle specific error cases
-    if (error.response?.status === 404) {
-      error.message = 'Server not found. Please check if backend is running.';
-    } else if (error.response?.status === 500) {
-      error.message = 'Server error. Please try again later.';
-    } else if (error.code === 'ECONNREFUSED') {
-      error.message = 'Cannot connect to server. Please make sure backend is running.';
-    }
-    
+    console.error('API Error:', error.response?.data || error.message);
     return Promise.reject(error);
   }
 );
 
-// API methods matching your backend routes
- const notesAPI = {
-  // Get all notes (non-deleted)
+export const notesAPI = {
   getAllNotes: async () => {
-    const response = await API.get('/get-all-note');
+    const response = await API.get('/get-all-note'); // This becomes /note/get-all-note
     return response.data;
   },
   
-  // Create new note
   createNote: async (noteData) => {
     const response = await API.post('/create-note', noteData);
     return response.data;
   },
   
-  // Update note
   updateNote: async (id, noteData) => {
     const response = await API.patch('/update-note', { 
       id: id, 
@@ -74,20 +52,12 @@ API.interceptors.response.use(
     return response.data;
   },
   
-  // Delete note (soft delete)
   deleteNote: async (id) => {
     const response = await API.delete('/delete-note', { 
       data: { id: id } 
     });
     return response.data;
-  },
-  
-  // Get deleted notes (if needed)
-  getDeletedNotes: async () => {
-    const response = await API.get('/get-deleted-note');
-    return response.data;
-  },
+  }
 };
 
-export { notesAPI };
 export default API;
