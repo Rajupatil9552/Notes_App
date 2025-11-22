@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://notes-app-f9s2.onrender.com' || 'http://localhost:3000';
 
-console.log('🔧 API Base URL:', API_BASE_URL); // Debug
-
 const API = axios.create({
   baseURL: `${API_BASE_URL}/note`, // This adds /note to all requests
   timeout: 10000,
